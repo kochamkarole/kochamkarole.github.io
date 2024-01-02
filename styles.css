@@ -1,0 +1,269 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    background: url('images/kochamkaroleblur.png') center/cover no-repeat;
+}
+
+/* Common styles for the menu bar */
+#menuBar {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    background-color: rgba(24, 22, 22, 0.01); /* Adjust alpha (the last value) for transparency */
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+#menuBar a {
+    text-decoration: none;
+    color: #333; /* Text color for menu items */
+    margin: 0 15px; /* Adjust spacing between menu items */
+    transition: color 0.3s ease-in-out; /* Transition effect for color change */
+    font-weight: bold; /* Make the text bold */
+}
+
+#menuBar a:hover {
+    color: #e74c3c; /* Change text color to red on hover */
+}
+
+/* Styles for the menu trigger icon */
+#menuTrigger {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#menuTrigger img {
+    width: 24px; /* Set the width of the icon as needed */
+}
+#menuBar a:hover {
+    color: #e74c3c; /* Change text color on hover */
+}
+
+#homeIcon {
+    width: 24px; /* Set the width of the icon as needed */
+    transition: filter 0.3s ease-in-out; /* Transition effect for the filter property */
+}
+
+#countdownContainer {
+    font-size: 24px;
+    text-align: center;
+    max-width: 80%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    bottom: 10vh;
+}
+
+.dayNumber {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+#countdownLabel {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+#countdownText {
+    color: #000;
+    font-weight: normal;
+}
+#informacjaTextContainer {
+    position:absolute;
+    top:25vh;
+    width: 600px;
+    min-width: fit-content;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: absolute;
+}
+
+
+#previousTexts {
+    position: absolute;
+    top: 25vh;
+    width:fit-content;
+}
+
+#informacjaHeaderText {
+    font-size: 28px;
+    margin-bottom: 10px; /* Add some space below the header text */
+    color: #e74c3c; /* Modern, simple delicate red color */
+  
+    font-weight: bold;
+}
+.headerText {
+    font-size: 32px;
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+#todayText {
+    position: absolute;
+    top: 25vh;
+}
+
+.todayTextContainer {
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: #000; 
+    width: 100%;
+    transform: translateX(-50%);
+    margin-left: 50%; 
+    max-width: 600px;   
+}
+#textContainer {
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: #000; 
+    width: 600px;
+}
+
+.textContainer {
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: #000; 
+    max-width: 50%;
+}
+
+.innerTextContainer {
+    margin: 10px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    text-align: left;
+    padding: 10px;
+}
+
+.dayNumber {
+    text-align: left;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+#quiz-container {
+    position: absolute;
+    top:25vh;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#question-text {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #c0392b;
+}
+
+#result-message {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+@media screen and (max-width: 768px) {
+    #menuBar {
+        flex-direction: column;
+        align-items: center;
+        display: none;
+    }
+
+    #menuBar.active {
+        display: flex;
+    }
+
+    #menuTrigger {
+        display: block;
+    }
+
+    #informacjaTextContainer {   
+        font-size: 16px;
+        width:250px;
+    }
+    #informacjaHeaderText{
+        font-size:22px;
+    }
+    #textContainer{
+        font-size:16px;
+        max-width: 260px;
+    }
+    .headerText {
+        font-size: 22px;
+    }
+    .textContainer {
+        font-size: 16px;
+        margin: 30px;
+        min-width: fit-content;
+    }
+    .todayTextContainer {
+        font-size:16px;
+        min-width: fit-content;
+        max-width: 250px;
+    }
+    .innerTextContainer {
+        font-size: 16px;
+        min-width: fit-content;
+    }
+    #countdownContainer {
+        font-size: 16px;
+    }
+}

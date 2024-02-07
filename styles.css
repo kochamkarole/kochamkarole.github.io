@@ -59,33 +59,36 @@ body {
     width: 24px; /* Set the width of the icon as needed */
     transition: filter 0.3s ease-in-out; /* Transition effect for the filter property */
 }
-
 #countdownContainer {
     font-size: 24px;
     text-align: center;
     max-width: 80%;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.8); /* Background color with some transparency */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: absolute;
-    bottom: 10vh;
+    bottom: 10vh; /* Move countdown 10vh from the bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
 }
 
-.dayNumber {
-    color: #e74c3c;
-    font-weight: bold;
+#todayTextContainer {
+    max-width: 80%;
+    margin: 20px auto;
+    text-align: center; /* Center the text */
 }
 
-#countdownLabel {
-    color: #e74c3c;
-    font-weight: bold;
+.innerTextContainer {
+    color: #000; /* Text color set to black */
 }
+
 
 #countdownText {
-    color: #000;
-    font-weight: normal;
+    color:#e74c3c; /* Text color set to black */
+    font-weight: bold; /* Reset font weight for the countdown text */
 }
+
 #informacjaTextContainer {
     position:absolute;
     top:25vh;

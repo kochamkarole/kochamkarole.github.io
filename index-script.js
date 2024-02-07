@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Create element for "razem:" text
             const totalCountdownText = document.createElement('div');
+            totalCountdownText.className = 'totalCountdownText';
             totalCountdownText.textContent = 'razem:';
-            totalCountdownText.style.fontSize = '18px'; // Set font size
             totalCountdownText.style.color = '#000'; // Set text color
 
             // Insert "razem:" text before the countdown element

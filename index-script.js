@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch('powody.txt')
         .then(response => response.text())
         .then(data => {
-            // Split the text into an array using a comma as the delimiter
+            // Split the text into an array using a semicolon as the delimiter
             const dailyTexts = data.split(';');
 
             // Rest of the code to display today's text
@@ -30,17 +30,39 @@ document.addEventListener('DOMContentLoaded', function () {
             todayText.className = 'innerTextContainer'; // Apply the inner text container class
             todayText.innerHTML = `<span class="dayNumber">#${dayDifference + 1}</span> ${dailyTexts[dayDifference]}`;
             todayTextContainerDiv.appendChild(todayText);
-        })
-        .catch(error => console.error('Error loading dailyTexts.txt:', error));
-        // Original code for the countdown
-    const referenceDateCountdown = new Date('2022-10-10');
-    const currentDate = new Date();
-    const daysPassedCountdown = Math.floor((currentDate - referenceDateCountdown) / (24 * 60 * 60 * 1000));
 
-    const countdownContainer = document.getElementById('countdownContainer');
-    const countdownTextElement = document.getElementById('countdownText');
-    countdownTextElement.textContent = `${daysPassedCountdown} dni`;
+            // Create element for "razem:" text
+            const totalCountdownText = document.createElement('div');
+            totalCountdownText.textContent = 'razem:';
+            totalCountdownText.style.fontSize = '18px'; // Set font size
+            totalCountdownText.style.color = '#000'; // Set text color
+
+            // Insert "razem:" text before the countdown element
+            const countdownContainer = document.getElementById('countdownContainer');
+            countdownContainer.insertBefore(totalCountdownText, countdownContainer.firstChild);
+
+            // Original code for the countdown animation
+            const referenceDateCountdown = new Date('2022-10-10');
+            const daysTotalCountdown = Math.floor((currentDate - referenceDateCountdown) / (24 * 60 * 60 * 1000));
+            let daysPassedCountdown = 0;
+
+            const countdownTextElement = document.getElementById('countdownText');
+            // Function to update the countdown with animation
+    function updateCountdown() {
+        if (daysPassedCountdown <= daysTotalCountdown) {
+            const displayNumber = Math.min(daysPassedCountdown, daysTotalCountdown);
+            countdownTextElement.textContent = `${displayNumber} dni`;
+            daysPassedCountdown += 1;
+            setTimeout(updateCountdown, 3); // Adjust timeout for smoother animation
+        }x
+    }
+
+    // Start the countdown animation
+    updateCountdown();
+})
+        .catch(error => console.error('Error loading dailyTexts.txt:', error));
 });
+
 document.addEventListener('DOMContentLoaded', function () {
     const homeLink = document.getElementById('homeLink');
     const homeIcon = document.getElementById('homeIcon');
@@ -55,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
         homeIcon.src = '/images/home.png';
     });
 });
+
 document.addEventListener('DOMContentLoaded', function () {
     const menuTrigger = document.getElementById('menuTrigger');
     const menuBar = document.getElementById('menuBar');
@@ -67,4 +90,3 @@ document.addEventListener('DOMContentLoaded', function () {
     // Hide menu bar initially
     menuBar.classList.remove('active');
 });
-

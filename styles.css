@@ -102,7 +102,9 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     position: absolute;
 }
-
+.totalCountdownText{
+    font-size: 18px;
+}
 
 #previousTexts {
     position: absolute;
@@ -268,5 +270,8 @@ button:hover {
     }
     #countdownContainer {
         font-size: 16px;
+    }
+    .totalCountdownText{
+        font-size: 12px;
     }
 }

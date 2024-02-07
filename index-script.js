@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const displayNumber = Math.min(daysPassedCountdown, daysTotalCountdown);
             countdownTextElement.textContent = `${displayNumber} dni`;
             daysPassedCountdown += 1;
-            setTimeout(updateCountdown, 30); // Adjust timeout for smoother animation
+            setTimeout(updateCountdown, 15); // Adjust timeout for smoother animation
         }x
     }
 

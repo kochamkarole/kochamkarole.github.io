@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
             headerText.innerHTML = 'Podpowiedź';
             todayTextContainerDiv.appendChild(headerText);
             // *********** REFERENCE ***********
-            const referenceDate = new Date('2024-04-20');
+            const referenceDate = new Date('2024-04-10');
             const monthDifference = (currentDate.getMonth() - referenceDate.getMonth()) + 
                 (12 * (currentDate.getFullYear() - referenceDate.getFullYear()));
 

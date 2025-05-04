@@ -1,78 +1,92 @@
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('podpowiedzi.txt')
+    fetch('matura.txt')
         .then(response => response.text())
         .then(data => {
-// ********* THE CLUE ****************************
-            const monthlyTexts = data.split(';');
-            const currentDate = new Date();
+            const lines = data.split(';').filter(Boolean);
+            const dateMap = {};
+
+            lines.forEach(entry => {
+                const match = entry.match(/"(\d{4}-\d{2}-\d{2})":\{"heading":"(.*?)","text":"(.*?)"(,"audio":"(.*?)")?\}/);
+                if (match) {
+                    const [_, date, heading, text, , audio] = match;
+                    dateMap[date] = { heading, text, audio };
+                }
+            });
+
+            const today = new Date();
+            const todayStr = today.toISOString().split('T')[0];
+
             const todayTextContainer = document.getElementById('todayText');
+            const wrapper = document.createElement('div');
+            wrapper.className = 'todayTextContainer';
 
-            const todayTextContainerDiv = document.createElement('div');
-            todayTextContainerDiv.className = 'todayTextContainer'; 
-            todayTextContainer.append(todayTextContainerDiv);
+            const entry = dateMap[todayStr];
 
-            const headerText = document.createElement('div');
-            headerText.className = 'headerText'; 
-            headerText.innerHTML = 'Podpowiedź';
-            todayTextContainerDiv.appendChild(headerText);
-            // *********** REFERENCE ***********
-            const referenceDate = new Date('2024-04-10');
-            const monthDifference = (currentDate.getMonth() - referenceDate.getMonth()) + 
-                (12 * (currentDate.getFullYear() - referenceDate.getFullYear()));
+            const heading = entry ? entry.heading : 'Brak nowej wiadomości';
+            const text = entry ? entry.text : 'Zaglądaj codziennie, może jutro coś się pojawi.';
 
-            if (currentDate.getDate() >= referenceDate.getDate()) {
-                const todayText = document.createElement('div');
-                todayText.className = 'innerTextContainer';
-                todayText.innerHTML = `<span class="dayNumber">#${monthDifference + 1}</span> ${monthlyTexts[monthDifference]}`;
-                todayTextContainerDiv.appendChild(todayText);
-            } else {
-                const previousMonthText = document.createElement('div');
-                previousMonthText.className = 'innerTextContainer'; // Apply the inner text container class
-                previousMonthText.innerHTML = `<span class="dayNumber">#${monthDifference}</span> ${monthlyTexts[monthDifference - 1]}`;
-                todayTextContainerDiv.appendChild(previousMonthText);
+            const header = document.createElement('div');
+            header.className = 'headerText';
+            header.textContent = heading;
+
+            const content = document.createElement('div');
+            content.innerHTML = text;
+
+            if (!entry) {
+                content.className = 'defaultMessage';
             }
 
-// ********* COUNTDOWN ***************
+            wrapper.appendChild(header);
+            wrapper.appendChild(content);
 
-            const totalCountdownText = document.createElement('div');
-            totalCountdownText.className = 'totalCountdownText';
-            totalCountdownText.textContent = 'razem:';
-            totalCountdownText.style.color = '#000';
-            const countdownContainer = document.getElementById('countdownContainer');
-            countdownContainer.insertBefore(totalCountdownText, countdownContainer.firstChild);
-            const referenceDateCountdown = new Date('2022-10-10');
-            const daysTotalCountdown = Math.floor((currentDate - referenceDateCountdown) / (24 * 60 * 60 * 1000));
-            let daysPassedCountdown = 0;
+            // Add custom audio button if audio exists
+            if (entry && entry.audio) {
+                const audio = new Audio(entry.audio);
 
-            const countdownTextElement = document.getElementById('countdownText');
+                const playButton = document.createElement('button');
+                playButton.textContent = '▶ głosówka';
+                playButton.className = 'playButton';
+
+                let isPlaying = false;
+
+                playButton.addEventListener('click', () => {
+                    if (!isPlaying) {
+                        audio.play();
+                        playButton.textContent = '⏸ zatrzymaj';
+                        isPlaying = true;
+                    } else {
+                        audio.pause();
+                        audio.currentTime = 0;
+                        playButton.textContent = '▶ wznów';
+                        isPlaying = false;
+                    }
+
+                    audio.onended = () => {
+                        playButton.textContent = '▶ jeszcze raz';
+                        isPlaying = false;
+                    };
+                });
+
+                wrapper.appendChild(playButton);
+            }
+
+            todayTextContainer.appendChild(wrapper);
+        });
+
+    // Fast countdown
+    const countdownTextElement = document.getElementById('countdownText');
+    const referenceDate = new Date('2022-10-10');
+    const currentDate = new Date();
+    const daysTotal = Math.floor((currentDate - referenceDate) / (1000 * 60 * 60 * 24));
+    let counter = 0;
+
     function updateCountdown() {
-        if (daysPassedCountdown <= daysTotalCountdown) {
-            const displayNumber = Math.min(daysPassedCountdown, daysTotalCountdown);
-            countdownTextElement.textContent = `${displayNumber} dni`;
-            daysPassedCountdown += 1;
-            setTimeout(updateCountdown, 15);
+        if (counter <= daysTotal) {
+            countdownTextElement.textContent = `${counter} dni`;
+            counter++;
+            setTimeout(updateCountdown, 5);
         }
     }
+
     updateCountdown();
-})
 });
-// ************ DEFAULT **************
-document.addEventListener('DOMContentLoaded', function () {
-    const homeLink = document.getElementById('homeLink');
-    const homeIcon = document.getElementById('homeIcon');
-    homeLink.addEventListener('mouseover', function () {
-        homeIcon.src = '/images/home_blue.png';
-    });
-    homeLink.addEventListener('mouseout', function () {
-        homeIcon.src = '/images/home.png';
-    });
-});
-document.addEventListener('DOMContentLoaded', function () {
-    const menuTrigger = document.getElementById('menuTrigger');
-    const menuBar = document.getElementById('menuBar');
-    menuTrigger.addEventListener('click', function () {
-        menuBar.classList.toggle('active');
-    });
-    menuBar.classList.remove('active');
-});
-// ************************************

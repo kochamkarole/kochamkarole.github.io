@@ -1,3 +1,7 @@
+:root {
+    --main-color: #198f4e; /* lighter, calm green */
+}
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -6,13 +10,14 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 100vh;
+    min-height: 100vh;
+    background-color: #f4f7f4;
 }
 
-/* Common styles for the menu bar */
+/* Menu bar (unchanged) */
 #menuBar {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     position: fixed;
     top: 0;
@@ -20,20 +25,24 @@ body {
     width: 100%;
     padding: 15px;
     box-sizing: border-box;
-    background-color: rgba(24, 22, 22, 0.01); /* Adjust alpha (the last value) for transparency */
+    background-color: rgba(25, 143, 78, 0.05);
     backdrop-filter: blur(10px);
     z-index: 1;
 }
 
 #menuBar a {
     text-decoration: none;
-    color: #333; /* Text color for menu items */
-    margin: 0 15px; /* Adjust spacing between menu items */
-    transition: color 0.3s ease-in-out; /* Transition effect for color change */
-    font-weight: bold; /* Make the text bold */
+    color: #333;
+    margin: 0 15px;
+    transition: color 0.3s ease-in-out;
+    font-weight: bold;
 }
 
-/* Styles for the menu trigger icon */
+#menuBar a:hover {
+    color: var(--main-color);
+}
+
+/* Menu trigger icon */
 #menuTrigger {
     display: none;
     position: fixed;
@@ -43,169 +52,126 @@ body {
     z-index: 2;
 }
 
-#menuTrigger img {
-    width: 24px; /* Set the width of the icon as needed */
-}
-#menuBar a:hover {
-    color: #154fe1; /* Change text color on hover */
-}
-
+#menuTrigger img,
 #homeIcon {
-    width: 24px; /* Set the width of the icon as needed */
-    transition: filter 0.3s ease-in-out; /* Transition effect for the filter property */
+    width: 24px;
+    transition: filter 0.3s ease-in-out;
 }
+
+/* Countdown */
 #countdownContainer {
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
-    max-width: 80%;
-    padding: 15px;
-    background-color: rgba(255, 255, 255, 0.8); /* Background color with some transparency */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    bottom: 10vh; /* Move countdown 10vh from the bottom */
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    bottom: 20px; /* distance from bottom */
     left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
-}
-
-#todayTextContainer {
-    max-width: 80%;
-    margin: 20px auto;
-    text-align: center; /* Center the text */
-}
-
-.innerTextContainer {
-    color: #000; /* Text color set to black */
+    transform: translateX(-50%);
+    z-index: 1;
 }
 
 
 #countdownText {
-    color:#154fe1; /* Text color set to black */
-    font-weight: bold; /* Reset font weight for the countdown text */
+    color: var(--main-color);
+    font-weight: 600;
 }
 
-#informacjaTextContainer {
-    position:absolute;
-    top:25vh;
-    width: 600px;
-    min-width: fit-content;
-    font-size: 24px;
+.totalCountdownText {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 5px;
+}
+.defaultMessage {
     text-align: center;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    position: absolute;
-}
-.totalCountdownText{
-    font-size: 18px;
+    font-style: italic;
+    color: #444;
+    margin-top: 10px;
 }
 
-#previousTexts {
-    position: absolute;
-    top: 25vh;
-    width:fit-content;
-}
 
-#informacjaHeaderText {
-    font-size: 28px;
-    margin-bottom: 10px; /* Add some space below the header text */
-    color: #154fe1;
-  
-    font-weight: bold;
-}
-.headerText {
-    font-size: 32px;
-    text-align: center;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: #154fe1;
-    font-weight: bold;
-}
-
+/* Unified daily text container */
 #todayText {
-    position: absolute;
-    top: 25vh;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin-top: 22vh;
 }
 
 .todayTextContainer {
-    font-size: 24px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 14px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 780px;
+    width: 90%;
+    text-align: justify;
+    line-height: 1.6;
+    font-size: 20px;
+    color: #222;
+}
+
+/* Heading inside the box */
+.todayTextContainer .headerText {
+    font-size: 26px;
     text-align: center;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    color: #000; 
-    width: 100%;
-    transform: translateX(-50%);
-    margin-left: 50%; 
-    max-width: 600px;   
-}
-#textContainer {
-    font-size: 24px;
-    text-align: left;
-    padding: 20px;
-    padding-left: 35px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    color: #000; 
-    max-width: 745px;
-    width: fit-content;
-}
-
-.textContainer {
-    font-size: 24px;
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    color: #000; 
-    max-width: 50%;
-}
-
-.innerTextContainer {
-    margin: 10px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-    text-align: left;
-    padding: 10px;
-}
-
-.dayNumber {
-    text-align: left;
-    color: #154fe1;
-    font-weight: bold;
-}
-
-#quiz-container {
-    position: absolute;
-    top:25vh;
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-#question-text {
-    font-size: 24px;
+    color: var(--main-color);
+    font-weight: 600;
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
+/* Powody layout (if used) */
+#previousTexts {
+    position: relative;
+    margin-top: 25vh;
+    max-width: 800px;
+    width: 90%;
 }
 
+.textContainer {
+    font-size: 20px;
+    text-align: justify;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    color: #000;
+    max-width: 800px;
+    width: 90%;
+}
+.playButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.playButton:hover {
+    background-color: #126c3c;
+}
+
+.defaultMessage {
+    text-align: center;
+    font-style: italic;
+    color: #444;
+    margin-top: 10px;
+}
+
+/* Buttons (optional) */
 button {
     padding: 10px 20px;
-    background-color: #154fe1;
+    background-color: var(--main-color);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -214,15 +180,72 @@ button {
 }
 
 button:hover {
-    background-color: #154fe1;
+    background-color: #126c3c;
 }
 
-#result-message {
-    margin-top: 20px;
-    font-weight: bold;
-    color: #154fe1;
+/* Powody page container */
+#previousTexts {
+    position: relative;
+    margin-top: 25vh;
+    max-width: 800px;
+    width: 90%;
 }
+
+/* Shared content box style */
+.textContainer {
+    font-size: 20px;
+    text-align: justify;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    color: #000;
+    margin: 0 auto;
+}
+
+/* Each reason box */
+.innerTextContainer {
+    margin: 15px auto;
+    padding: 18px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    max-width: 700px;
+    text-align: justify;
+    line-height: 1.6;
+    color: #222;
+}
+
+/* Number prefix before each reason */
+.dayNumber {
+    color: var(--main-color);
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+/* Section header */
+.headerText {
+    font-size: 26px;
+    text-align: center;
+    color: var(--main-color);
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+
+/* Mobile responsiveness */
 @media screen and (max-width: 768px) {
+    #previousTexts {
+        margin-top: 20vh;
+    }
+    
+    .innerTextContainer {
+        font-size: 16px;
+        padding: 16px;
+        width: 92%;
+    }
+
+    
     #menuBar {
         flex-direction: column;
         align-items: center;
@@ -237,38 +260,25 @@ button:hover {
         display: block;
     }
 
-    #informacjaTextContainer {   
-        font-size: 16px;
-        width:250px;
-    }
-    #informacjaHeaderText{
-        font-size:22px;
-    }
-    #textContainer{
-        font-size:16px;
-        max-width: 260px;
-    }
-    .headerText {
-        font-size: 22px;
-    }
-    .textContainer {
-        font-size: 16px;
-        margin: 30px;
-        min-width: fit-content;
-    }
     .todayTextContainer {
-        font-size:16px;
-        min-width: fit-content;
-        max-width: 250px;
-    }
-    .innerTextContainer {
         font-size: 16px;
-        min-width: fit-content;
+        padding: 20px;
     }
+
+    .todayTextContainer .headerText {
+        font-size: 20px;
+    }
+
     #countdownContainer {
         font-size: 16px;
+        padding: 15px;
     }
-    .totalCountdownText{
+
+    .totalCountdownText {
         font-size: 12px;
+    }
+
+    .textContainer {
+        font-size: 16px;
     }
 }

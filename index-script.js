@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const entry = dateMap[todayStr];
 
-            const heading = entry ? entry.heading : 'Brak nowej wiadomości';
-            const text = entry ? entry.text : 'Zaglądaj codziennie, może jutro coś się pojawi.';
+            const heading = entry ? entry.heading : 'Odpoczynek';
+            const text = entry ? entry.text : 'Dzisiaj nie masz żadnej matury!';
 
             const header = document.createElement('div');
             header.className = 'headerText';
